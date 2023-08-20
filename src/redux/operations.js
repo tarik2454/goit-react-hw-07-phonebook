@@ -9,9 +9,10 @@ export const baseURL = axios.create({
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
   async (_, thunkAPI) => {
+    // toast.info('You have active loading');
     try {
       const { data } = await baseURL.get('/contacts');
-      console.log(data);
+
       return data;
     } catch (error) {
       console.error(error);
@@ -41,16 +42,15 @@ export const deleteContact = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.message);
     }
-  },
-  {
-    // condition: (_, { getState }) => {
-    //   console.log(getState());
-    //   const isLoading = getState().contacts.isLoading;
-    //   if (isLoading) {
-    //     alert('You have active loading');
-    //     // toast.info('You have active loading');
-    //     return false;
-    //   }
-    // },
   }
+  // {
+  //   condition: (_, { getState }) => {
+  //     console.log(getState());
+  //     const isLoading = getState().contacts.isLoading;
+  //     if (isLoading) {
+  //       alert('You have active loading');
+  //       return false;
+  //     }
+  //   },
+  // }
 );

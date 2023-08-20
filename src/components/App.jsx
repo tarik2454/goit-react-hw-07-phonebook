@@ -11,9 +11,9 @@ import {
   GlobalStyledTitle,
   StyledSmollTitle,
 } from 'styles/GlobalStyle';
-import { LineWave } from 'react-loader-spinner';
 import { selectIsLoading } from 'redux/selectors';
 import { fetchContacts } from 'redux/operations';
+import { Loader } from './Loader/Loader';
 
 export const App = () => {
   const isLoading = useSelector(selectIsLoading);
@@ -33,23 +33,7 @@ export const App = () => {
             <Filter />
             <StyledSmollTitle>Contacts</StyledSmollTitle>
 
-            {isLoading ? (
-              <LineWave
-                height="100"
-                width="100"
-                color="#437aa5"
-                ariaLabel="line-wave"
-                textAling="center"
-                wrapperStyle={{ justifyContent: 'center', marginTop: '30px' }}
-                wrapperClass=""
-                visible={true}
-                firstLineColor=""
-                middleLineColor=""
-                lastLineColor=""
-              />
-            ) : (
-              <ContactList />
-            )}
+            {isLoading ? <Loader /> : <ContactList />}
           </StyledWrapper>
         </GlobalStyledContainer>
       </GlobalStyledSection>
