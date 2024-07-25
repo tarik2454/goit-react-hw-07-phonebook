@@ -11,7 +11,7 @@ export const fetchContacts = createAsyncThunk(
   async (_, thunkAPI) => {
     // toast.info('You have active loading');
     try {
-      const { data } = await baseURL.get('/contacts');
+      const { data } = await baseURL.get('/api/contacts');
 
       return data;
     } catch (error) {
@@ -25,7 +25,7 @@ export const addContact = createAsyncThunk(
   'contacts/addContacts',
   async (body, { rejectWithValue }) => {
     try {
-      const { data } = await baseURL.post('/contacts', body);
+      const { data } = await baseURL.post('/api/contacts', body);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -37,7 +37,7 @@ export const deleteContact = createAsyncThunk(
   'contact/deleteContact',
   async (id, { rejectWithValue }) => {
     try {
-      const { data } = await baseURL.delete(`/contacts/${String(id)}`);
+      const { data } = await baseURL.delete(`/api/contacts/${String(id)}`);
       return data.id;
     } catch (error) {
       return rejectWithValue(error.message);
